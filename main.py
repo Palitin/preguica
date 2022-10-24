@@ -2,9 +2,10 @@ import mysql.connector
 
 def criar_tabela(nome, campos):
     # função de criação de tabela
-    comando = f"CREATE TABLE {nome} (ID int AUTO_INCREMENT, )"
+    comando = f"CREATE TABLE {nome} (ID int AUTO_INCREMENT"
     for campo in campos:
-        comando += f"{campo} varchar"
+        comando += f", {campo} varchar"
+    comando += ")"
     return comando
 
 # recolhe os dados necessários para se conectar
