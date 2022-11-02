@@ -28,7 +28,8 @@ try:
     cursor.execute("CREATE TABLE IF NOT EXIXTS veiculo (id int AUTO_INCREMENT PRIMARY KEY, marca varchar(30), modelo varchar(30), ano year, cor varchar(15), placa varchar(8))")
     cursor.execute("CREATE TABLE IF NOT EXISTS cruzamento (id int AUTO_INCREMENT PRIMARY KEY, rua1 varchar(40), rua2 varchar (40))")
     cursor.execute("CREATE TABLE IF NOT EXISTS leitura (id int AUTO_INCREMENT PRIMARY KEY, placa varchar(8), FOREIGN KEY(cruzamento_id) REFERENCES cruzamento(id))")
-
+    
+    cursor.commit()
     cursor.close()
 except Exception as erro:
     print(f"Erro: {erro}")
@@ -47,6 +48,7 @@ try:
         ruas2= ["rua Fome", "rua Coxinha", "rua Bolo", "rua Pastel", "rua Docinho"]
         cursor.execute(f'INSERT INTO cruzamento(rua1, rua2) VALUES({ruas1[x], ruas2[x]})')
     
+    cursor.commit()
     cursor.close()
 except Exception as erro:
     print(f"Erro: {erro}")
@@ -76,7 +78,8 @@ try:
     connection.database = database
 
     add_leituras(leituras)
-
+    
+    cursor.commit()
     cursor.close()
 except Exception as erro:
     print(f'Erro: {erro}')
